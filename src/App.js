@@ -1,36 +1,63 @@
-import { Alchemy, Network } from 'alchemy-sdk';
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import getBalance from './components/getBalance';
+var Web3 = require('web3');
 
-import './App.css';
-
-// Refer to the README doc for more information about using API
-// keys in client-side code. You should never do this in production
-// level code.
-const settings = {
-  apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
-  network: Network.ETH_MAINNET,
-};
-
-
-// In this week's lessons we used ethers.js. Here we are using the
-// Alchemy SDK is an umbrella library with several different packages.
-//
-// You can read more about the packages here:
-//   https://docs.alchemy.com/reference/alchemy-sdk-api-surface-overview#api-surface
-const alchemy = new Alchemy(settings);
 
 function App() {
-  const [blockNumber, setBlockNumber] = useState();
+  const [gasPrice, setGasPrice] = useState('Loading');
+  const[blockNumber , setBlockNumber] = useState('Loading')
+  const [address, setAddress] = useState('');
+  const [balance, setBalance] = useState(':');
 
+  const web3 = new Web3("https://eth-mainnet.g.alchemy.com/v2/TTLLqv5MxV8X-bMTZpWG70XuItqDGRTo");
+
+  const handleAddressChange = (event) => {
+    setAddress(event.target.value);
+    setBalance('Please wait fetching balance');
+  }
+  const handleClick = async () => {
+    const balance = await getBalance(address);
+    setBalance(balance);
+    
+  }
   useEffect(() => {
-    async function getBlockNumber() {
-      setBlockNumber(await alchemy.core.getBlockNumber());
-    }
+    const intervalId = setInterval(async () => {
+      const gasPrice = await web3.eth.getGasPrice();
+      const blockNumber = await web3.eth.getBlockNumber();
+      const showGas = web3.utils.fromWei(gasPrice,"gwei")
+      setGasPrice(showGas);
+      setBlockNumber(blockNumber);
+    }, 3000);
 
-    getBlockNumber();
-  });
+    return () => clearInterval(intervalId);
+  },);
 
-  return <div className="App">Block Number: {blockNumber}</div>;
+
+  return (
+    <div
+      style={{
+        background: "linear-gradient(to left, #903AB7 20%, #2A1B9A 80%)",
+        color: "white",
+        padding: "20px",
+        borderRadius: "10px",
+      }}
+    >
+      <h1 style={{ color: "cyan" }}>
+        The stats are set to auto refresh using react hooks, every 10 seconds
+      </h1>
+      <p>
+        Gas Price is: <strong>{gasPrice} Gwei</strong>
+      </p>
+      <p>
+        Latest Mined Block Number is: <strong>{blockNumber}</strong>
+      </p>
+      <p>
+        Let's get the balance of an address<br />
+        <input type="text" value={address} onChange={handleAddressChange} placeholder='Paste the Ethereum address here' />
+        <button onClick={handleClick}>Get balance</button> <br />
+        The balance of the <br/>address {address} is :{balance} ETH
+      </p>
+    </div>
+  )
 }
-
 export default App;

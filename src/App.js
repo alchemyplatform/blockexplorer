@@ -55,6 +55,7 @@ function App() {
         Let's get the balance of an address<br />
         <input type="text" value={address} onChange={handleAddressChange} placeholder='Paste the Ethereum address here' />
         <button onClick={handleClick}>Get balance</button> <br />
+        Make sure to click the grey colored button to fetch balance <br/>
         The balance of the <br/>address {address} is :{balance} ETH
       </p>
     </div>

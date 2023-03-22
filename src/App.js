@@ -62,16 +62,16 @@ function App() {
       <p>
         Gas Price is: <strong>{gasPrice} Gwei</strong>
       </p>
-      <p>Block data for block 16856266 is:   </p>
+    
       <p>
         Latest Mined Block Number is: <strong>{blockNumber}</strong>
       </p>
       <p>
-        Let's get the balance of an address<br />
+        Let's get the balance of an address<br /><br/>
         Make sure to click the grey colored button below to fetch balance <br/><br/>
-        Goto <a href="etherscan.io">Etherscan.io</a> to pick any address and paste it below<br/>
+        Goto <a style={{color:'white'}} href="https://etherscan.io">Etherscan.io</a> to pick any address and paste it below<br/>
         <input type="text" value={address} onChange={handleAddressChange} placeholder='Paste the Ethereum address here' />
-        <button onClick={handleClick}>Get balance</button> <br />
+        <button onClick={handleClick}>Get balance</button> <br /><br/>
         
         The balance of the <br/>address {address} is :{balance} ETH
       </p>

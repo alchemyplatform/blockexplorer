@@ -22,7 +22,7 @@ function App() {
 
   const handleBlockResult = async () => {
     const blockData = await getBlockbyNumber(inputBlock);
-    showBlockData(JSON.parse(blockData));
+    showBlockData(blockData);
   };
 
   const handleAddressChange = (event) => {
@@ -56,8 +56,8 @@ function App() {
         borderRadius: "10px",
       }}
     >
-      <h1 style={{ color: "cyan" }}>
-        The stats are set to auto refresh using react hooks, every 10 seconds
+      <h1 style={{ color: "cyan" }} align="center">
+        Welcome to Ethereum Block Explorer created by @0xTheKnightmare on Twitter
       </h1>
       <p>
         Gas Price is: <strong>{gasPrice} Gwei</strong>
@@ -115,6 +115,18 @@ function App() {
     </tbody>
   </table>
     </div>
+    <div
+  style={{
+    background: "linear-gradient(to left, #903AB7 20%, #2A1B9A 80%)",
+    color: "white",
+    padding: "20px",
+    borderRadius: "10px",
+    borderTop: "5px solid cyan",
+     margin: 'auto'
+  }}>
+<h1>hi man</h1>
+</div>
+
     </div>
 
     

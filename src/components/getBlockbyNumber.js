@@ -21,7 +21,7 @@ const getBlockbyNumber = async(blockNum) => {
         timestamp:timestamp,
         totalDifficulty:totalDifficulty
     }
-     return JSON.stringify(BlockDataObj)
+     return (BlockDataObj)
 } 
 
 export default getBlockbyNumber;

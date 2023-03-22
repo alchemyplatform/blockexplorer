@@ -69,7 +69,7 @@ function App() {
       <p>
         Let's get the balance of an address<br /><br/>
         Make sure to click the grey colored button below to fetch balance <br/><br/>
-        Goto <a style={{color:'white'}} href="https://etherscan.io">Etherscan.io</a> to pick any address and paste it below<br/>
+        Goto <a style={{color:'white'}} href="https://etherscan.io"  target="_blank" rel="noopener noreferrer">Etherscan.io</a> to pick any address and paste it below<br/>
         <input type="text" value={address} onChange={handleAddressChange} placeholder='Paste the Ethereum address here' />
         <button onClick={handleClick}>Get balance</button> <br /><br/>
         

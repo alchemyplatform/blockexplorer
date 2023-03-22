@@ -165,7 +165,7 @@ function App() {
         <td style={{ border: '2px solid cyan', padding: '12px' }}>{txHashDetails.inBlock}</td>
         <td style={{ border: '2px solid cyan', padding: '8px' }}>{txHashDetails.maxFeePerGas}</td>
         <td style={{ border: '2px solid cyan', padding: '8px' }}>{txHashDetails.nonce}</td>
-        <td style={{ border: '2px solid cyan', padding: '8px' }}>{txHashDetails.indexInBlock} yo</td>
+        <td style={{ border: '2px solid cyan', padding: '8px' }}>{txHashDetails.indexInBlock}</td>
       
         </tr>
     </tbody>

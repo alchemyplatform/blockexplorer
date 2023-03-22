@@ -98,7 +98,7 @@ function App() {
         <th style={{ border: '2px solid cyan', padding: '8px' }}>Gas Limit</th>
         <th style={{ border: '2px solid cyan', padding: '8px' }}>Gas Used</th>
         <th style={{ border: '2px solid cyan', padding: '8px' }}>Block Filled Percent</th>
-        <th style={{ border: '2px solid cyan', padding: '8px' }}>Timestamp as per indian Timing</th>
+        <th style={{ border: '2px solid cyan', padding: '8px' }}>Block Mined At</th>
         <th style={{ border: '2px solid cyan', padding: '8px' }}>Total Difficulty</th>
       </tr>
     </thead>
@@ -106,8 +106,8 @@ function App() {
       <tr>
         <td style={{ border: '2px solid cyan', padding: '8px' }}>{parseFloat(blockResult.baseFeePerGas).toFixed(8)}</td>
         <td style={{ border: '2px solid cyan', padding: '8px', paddingLeft: '40px' }}>{blockResult.txnCount}</td>
-        <td style={{ border: '2px solid cyan', padding: '8px' }}>{blockResult.gasLimit}</td>
-        <td style={{ border: '2px solid cyan', padding: '8px' }}>{blockResult.gasUsed}</td>
+        <td style={{ border: '2px solid cyan', padding: '12px' }}>{blockResult.gasLimit}</td>
+        <td style={{ border: '2px solid cyan', padding: '12px' }}>{blockResult.gasUsed}</td>
         <td style={{ border: '2px solid cyan', padding: '8px' }}>{blockResult.blockFilledPecent}</td>
         <td style={{ border: '2px solid cyan', padding: '8px' }}>{new Date(blockResult.timestamp * 1000).toString()}</td>
         <td style={{ border: '2px solid cyan', padding: '8px' }}>{blockResult.totalDifficulty}</td>

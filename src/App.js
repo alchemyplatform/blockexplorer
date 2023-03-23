@@ -2,39 +2,16 @@ import React, { useState, useEffect } from 'react';
 import getBalance from './components/getBalance';
 import getBlockbyNumber from './components/getBlockbyNumber';
 import getTransactionDetails from './components/getTransactionDetails';
+
 var Web3 = require('web3');
+
 
 //use inside style if you wish background: "linear-gradient(to left, #003973, #000000)"
 // background: "linear-gradient(to bottom right, #003973, #E5E5BE)",
 
 function App() {
   const web3 = new Web3("https://eth-mainnet.g.alchemy.com/v2/TTLLqv5MxV8X-bMTZpWG70XuItqDGRTo");
-  
-  const [address, setAddress] = useState('');
-  const [balance, setBalance] = useState('');
-
-  const handleAddressChange = (event) => {
-    setAddress(event.target.value);
-    setBalance('Please wait fetching balance');
-  }
-  const handleClick = async () => {
-    const balance = await getBalance(address);
-    setBalance(balance);
-  }
-
-  const[inputBlock , setBlockas] = useState();
-  const[blockResult, showBlockData] = useState('');
-
-  
-  const handleBlockBox = (event) => {
-    setBlockas(event.target.value);
-    showBlockData("please wait")
-  };
-
-  const handleBlockResult = async () => {
-    const blockData = await getBlockbyNumber(inputBlock);
-    showBlockData(blockData);
-  };
+  //Welcome Section
 
   const [gasPrice, setGasPrice] = useState('Loading');
   const[blockNumber , setBlockNumber] = useState('Loading')
@@ -51,6 +28,36 @@ function App() {
     return () => clearInterval(intervalId);
   },);
 
+
+  const [address, setAddress] = useState('');
+  const [balance, setBalance] = useState('');
+
+  const handleAddressChange = (event) => {
+    setAddress(event.target.value);
+    setBalance('Please wait fetching balance');
+  }
+  const handleClick = async () => {
+    const balance = await getBalance(address);
+    setBalance(balance);
+  }
+
+  //Block Info Section
+  const[inputBlock , setBlockas] = useState();
+  const[blockResult, showBlockData] = useState('');
+
+  
+  const handleBlockBox = (event) => {
+    setBlockas(event.target.value);
+    showBlockData("please wait")
+  };
+
+  const handleBlockResult = async () => {
+    const blockData = await getBlockbyNumber(inputBlock);
+    showBlockData(blockData);
+  };
+
+  //Transaction Hash Info Section
+
   const[txHashBox , setTxHashTo] = useState();
   const[txHashDetails, showTxDetails] = useState('');
 
@@ -64,7 +71,6 @@ function App() {
     showTxDetails(txHashDetails);
   }
 
-  
 
   return (
     <div>
@@ -143,7 +149,7 @@ function App() {
      margin: 'auto'
   }}>
 <h1 style={{ color: "cyan" }} align  ="center">Transaction Hash Info</h1>
-    <input type="text" value={inputBlock} onChange={handleTxBox} placeholder='Paste theTransaction Hash here' />
+    <input type="text" value={txHashBox} onChange={handleTxBox} placeholder='Paste theTransaction Hash here' />
     <button onClick={handleTxBoxClick}>Click to know Transaction hash Block Info</button> <br />
     <table style={{ border: '2px solid cyan', borderCollapse: 'collapse', width: '100%' }}>
     <thead>
@@ -166,16 +172,11 @@ function App() {
         <td style={{ border: '2px solid cyan', padding: '8px' }}>{txHashDetails.maxFeePerGas}</td>
         <td style={{ border: '2px solid cyan', padding: '8px' }}>{txHashDetails.nonce}</td>
         <td style={{ border: '2px solid cyan', padding: '8px' }}>{txHashDetails.indexInBlock}</td>
-      
         </tr>
     </tbody>
   </table>
 </div>
-
     </div>
-
-    
   )
-  
 }
 export default App;

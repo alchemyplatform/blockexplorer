@@ -43,8 +43,9 @@
   height: 12vw;
 }
 
-.fetch_button{
+.fetch_button {
   display: flex;
   justify-content: center;
+  padding: 1rem;
   
 }

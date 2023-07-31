@@ -21,31 +21,39 @@ const alchemy = new Alchemy(config);
 
 function App() {
   const [blockNumber, setBlockNumber] = useState();
-  const [blockDetails, setBlockDetails] = useState({});
+  const [blockDetails, setBlockDetails] = useState([]);
   const [nonce, setNonce] = useState();
 
    //function for getting the blockNumber
   async function getBlockNumber() {
-    setBlockNumber(await alchemy.core.getBlockNumber());
+    setBlockNumber(await alchemy.core.getBlockNumber());;
   }
-
-  //function for getting the details of the block  
- async function getBlockDetails(blockNumber){
-  let number = blockNumber.toString() 
-  setBlockDetails(await alchemy.core.getBlock(number))
- }
 
   useEffect(() => {
     getBlockNumber();
   });
 
 
+  //function for getting the details of the block  
+ async function getBlockDetails(blockNumber){ 
+   const response = await alchemy.core.getBlock(parseInt(blockNumber))
+   setBlockDetails(response)
+  console.log(blockDetails)
+ }
+
+
+
   return (
   <div>
      <h1 className='heading'>Welcome to Scam ki duniya!!</h1>
     <div className="App">Block Number: {blockNumber}</div>
-    <button onClick={()=> getBlockDetails({blockNumber})} className='fetch_button'> Get Details </button>
-    <div>Block's hash: {blockDetails}</div>
+    <div className='fetch_button'>
+    <button onClick={getBlockDetails} > Get Details </button>
+    </div>
+    <div>Block's hash: {blockDetails.hash}</div>
+    <div>Block's nonce: {blockDetails.nonce}</div>
+    <div>Block's timestamp: {blockDetails.timestamp} </div>
+    <div> Block's Miner: {blockDetails.miner}</div>
   </div>
   )
 }

@@ -45,7 +45,7 @@ function App() {
 
   return (
   <div>
-     <h1 className='heading'>Welcome to Scam ki duniya!!</h1>
+     <h1 className='heading'>Welcome to CUSTOM BLOCK EXPLORER!</h1>
     <div className="App">Block Number: {blockNumber}</div>
     <div className='fetch_button'>
     <button onClick={getBlockDetails} > Get Details </button>
